@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Resumo de Matemática — 9º Ano (HTML)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+  <div class="stage">
+    <header>
+      <div class="brand-group">
+        <div class="logo">M</div>
+        <div class="title-wrap">
+          <h1>Resumo de Matemática — 9º Ano</h1>
+          <p>Turma do Ensino Médio (aulas objetivas)</p>
+        </div>
+      </div>
+      
+      <div class="prof-details">
+        <div class="name">Professor Valdeck Francisco</div>
+        <div class="role">Autor e responsável pela aula</div>
+      </div>
+    </header>
+
+    <div class="inspiration">
+      <div class="quote">“O perfeito equilíbrio só DEUS pode criar!”</div>
+      <div class="author">Professor Valdeck Francisco</div>
+    </div>
+
+
+    <div class="slide-card" role="region" aria-label="Apresentação de matemática">
+      <div class="progress" aria-hidden><div class="bar" id="progressBar"></div></div>
+
+      <div id="slideInner" class="slide-inner">
+        <div class="left">
+          <div class="prof-name">Professor Valdeck Francisco</div>
+          <h2 id="slideTitle">∆ D075-M – Proporcionalidade entre grandezas</h2>
+          
+          <ul id="slideBullets" class="bullets" aria-live="polite">
+            <li>Comparar e relacionar grandezas, como tempo/distância, preço/quantidade, ou litros/reais.</li>
+            <li>Exemplo: Se 3 laranjas custam R$ 6,00, quanto custam 5 laranjas?</li>
+            <li>A solução é montar uma regra de três e resolver.</li>
+          </ul>
+          
+          <div id="slideNote" class="note">Sempre que precisar comparar duas grandezas que variam, use a proporcionalidade.</div>
+        </div>
+
+        <!-- <div class="visual" aria-hidden>
+          <svg id="visualSVG" width="300" height="180" viewBox="0 0 300 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#16a34a"/><stop offset="1" stop-color="#facc15"/></linearGradient>
+            </defs>
+            <rect x="10" y="20" width="80" height="80" rx="8" fill="url(#g1)" opacity="0.95" />
+            <rect x="110" y="30" width="160" height="50" rx="6" fill="#f3f4f6" />
+            <polygon points="130,120 230,120 180,60" fill="#fde68a"></polygon>
+          </svg>
+        </div> -->
+      </div>
+
+      <div class="controls">
+        <div class="controls-left">
+          <button id="btnPrev" class="btn secondary" aria-label="Anterior">Anterior</button>
+          <button id="btnNext" class="btn secondary" aria-label="Próximo">Próximo</button>
+        </div>
+
+        <div class="thumbs" id="thumbs"></div>
+      </div>
+
+    </div>
+
+    <footer>Resumo: Descritores D075, D181, D016, D144, D015, D121, D157 do 9º Ano.</footer>
+  </div>
+
+  <script>
+    // Slides data (NOVOS DESCRITORES D075, D181, D016, D144, D015, D121, D157)
+    const slides = [
+      {id:'d075', title: "∆ D075-M – Proporcionalidade entre grandezas", bullets:[
+        "Comparar e relacionar grandezas, como tempo/distância, preço/quantidade, ou litros/reais.",
+        "Exemplo: Se 3 laranjas custam R$ 6,00, quanto custam 5 laranjas?",
+        "A solução é montar uma regra de três e resolver."
+      ], note: "Sempre que precisar comparar duas grandezas que variam, use a proporcionalidade."},
+      
+      {id:'d181', title: "📏 D181-M – Conversão entre unidades de medida", bullets:[
+        "Transformar medidas de um tipo para outro, mantendo o mesmo valor.",
+        "1 metro = 100 centímetros",
+        "1 litro = 1.000 mililitros (ml)",
+        "Exemplo: Se uma caixa tem 2.000 ml, ela tem 2 litros."
+      ], note: "Foque em transformar medidas de comprimento, volume ou massa de forma correta."},
+      
+      {id:'d016', title: "🔢 D016-M – Números inteiros na reta numérica", bullets:[
+        "Localizar números inteiros (positivos e negativos) em uma linha.",
+        "O número -3 está à esquerda do zero.",
+        "O número 5 está à direita do zero.",
+        "Quanto mais à direita na reta, maior é o número."
+      ], note: "O zero é o ponto central que separa os números negativos dos positivos."},
+      
+      {id:'d144', title: "⬜ D144-M – Classificar quadriláteros", bullets:[
+        "Identificar e diferenciar figuras de quatro lados (quadriláteros) pelas suas propriedades.",
+        "Quadrado: quatro lados iguais e quatro ângulos retos.",
+        "Retângulo: lados opostos iguais e quatro ângulos retos.",
+        "Losango: quatro lados iguais, mas sem ângulos retos."
+      ], note: "Os quadriláteros são figuras de 4 lados."},
+      
+      {id:'d015', title: "➗ D015-M – Números racionais na reta numérica", bullets:[
+        "Envolve colocar frações e números decimais na reta numérica.",
+        "Exemplo: 0,5 está entre 0 e 1.",
+        "Exemplo: A fração ¾ está mais perto de 1 do que de 0."
+      ], note: "Números racionais são frações (a/b) e seus equivalentes decimais."},
+      
+      {id:'d121', title: "⚙️ D121-M – Sistema de equações do 1º grau", bullets:[
+        "Usar duas equações com duas incógnitas (letras) para resolver problemas.",
+        "Exemplo: Ingresso de adulto custa R$ 10 e de criança R$ 6.",
+        "Exemplo: Se 2 adultos e 3 crianças pagaram R$ 38, quanto custa cada um?",
+        "Resolver o sistema (métodos da substituição ou adição) ajuda a descobrir o valor."
+      ], note: "A chave é montar corretamente as duas equações que representam o problema."},
+      
+      {id:'d157', title: "📐 D157-M – Relações entre ângulos e retas paralelas", bullets:[
+        "Calcular ângulos formados quando uma reta transversal corta duas retas paralelas.",
+        "Ângulos correspondentes (na mesma posição) têm a mesma medida (são iguais).",
+        "Ângulos suplementares somam 180°.",
+        "Exemplo: Se um ângulo mede 120°, o correspondente também mede 120°, e o suplementar mede 60°."
+      ], note: "Com a medida de um ângulo, você descobre a medida de todos os outros 7 ângulos."}
+    ];
+
+    // DOM refs
+    const slideTitle = document.getElementById('slideTitle');
+    const slideBullets = document.getElementById('slideBullets');
+    const slideNote = document.getElementById('slideNote');
+    const progressBar = document.getElementById('progressBar');
+    const visualSVG = document.getElementById('visualSVG');
+    const thumbs = document.getElementById('thumbs');
+
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+    const btnPlay = document.getElementById('btnPlay');
+    const btnExport = document.getElementById('btnExport');
+
+    let idx = 0; let playing = false; let autoplayTimer = null; const SLIDE_MS = 7000;
+
+    // create thumbs
+    slides.forEach((s,i)=>{
+      const t = document.createElement('button');
+      t.className='thumb'+(i===0?' active':'');
+      t.textContent = i+1;
+      t.addEventListener('click', ()=>{goTo(i);});
+      thumbs.appendChild(t);
+    });
+
+    function updateThumbs(){
+      Array.from(thumbs.children).forEach((el,i)=>{
+        el.classList.toggle('active', i===idx);
+      });
+    }
+
+    function render(){
+      const s = slides[idx];
+      slideTitle.textContent = s.title;
+      slideBullets.innerHTML=''; // Limpa o conteúdo hardcoded para a animação
+      s.bullets.forEach((b,i)=>{
+        const li = document.createElement('li');
+        li.textContent = b;
+        li.style.animation = `fadeUp .45s ease forwards ${(i*120)+120}ms`;
+        slideBullets.appendChild(li);
+      });
+      slideNote.textContent = s.note;
+
+      // progress
+      const pct = Math.round(((idx+1)/slides.length)*100);
+      progressBar.style.width = pct + '%';
+
+      // simple visual change (switch shapes per slide)
+      // updateVisual(s.id);
+
+      // animate slide card
+      const slideInner = document.getElementById('slideInner');
+      slideInner.classList.remove('animate-slide');
+      // trigger reflow to restart animation
+      void slideInner.offsetWidth;
+      slideInner.classList.add('animate-slide');
+
+      updateThumbs();
+    }
+
+    // updateVisual (MANTIDA)
+    // function updateVisual(id){
+    //   const ns = {
+    //     area:`<rect x="10" y="20" width="80" height="80" rx="8" fill="url(#g1)" opacity="0.95" />
+    //           <rect x="110" y="30" width="160" height="50" rx="6" fill="#f3f4f6" />
+    //           <polygon points="130,120 230,120 180,60" fill="#fde68a"></polygon>`,
+    //     volume:`<rect x="30" y="20" width="180" height="100" rx="10" fill="url(#g1)" opacity="0.9" />`,
+    //     d121:`<circle cx="70" cy="80" r="40" fill="url(#g1)" />
+    //               <rect x="160" y="50" width="110" height="60" rx="8" fill="#eef2ff" />`,
+    //     d016:`<line x1="10" y1="150" x2="290" y2="150" stroke="#9ca3af" stroke-width="1" />
+    //            <line x1="150" y1="10" x2="150" y2="170" stroke="#9ca3af" stroke-width="1" />
+    //            <circle cx="200" cy="90" r="10" fill="url(#g1)" />`,
+    //     d075:`<rect x="20" y="30" width="260" height="100" rx="8" fill="#f3f4f6" />
+    //               <text x="40" y="85" font-size="22" fill="#0f172a">A/B = C/D</text>`,
+    //     d157:`<path d="M40 140 L140 40 L240 140 Z" fill="url(#g1)" />
+    //              <circle cx="90" cy="80" r="6" fill="#fff" />`,
+    //     d015:`<rect x="20" y="40" width="260" height="60" rx="8" fill="#f3f4f6" />
+    //              <text x="120" y="80" font-size="26" fill="#0f172a">3/4</text>`,
+    //     graficos:`<rect x="20" y="60" width="30" height="80" fill="#e5f9f0" />
+    //              <rect x="70" y="40" width="30" height="100" fill="#fde68a" />
+    //              <rect x="120" y="90" width="30" height="50" fill="#e5e7eb" />
+    //              <circle cx="240" cy="70" r="30" fill="#fff7ed" />`,
+    //     d144: `<rect x="10" y="20" width="80" height="80" rx="8" fill="url(#g1)" opacity="0.95" />
+    //            <rect x="110" y="30" width="160" height="50" rx="6" fill="#f3f4f6" />
+    //            <rect x="50" y="100" width="100" height="50" rx="6" fill="#fde68a" />`
+    //   };
+    //   // Usa uma das IDs existentes como fallback se a nova não for mapeada
+    //   visualSVG.innerHTML = `<defs><linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#16a34a"/><stop offset="1" stop-color="#facc15"/></linearGradient></defs>` + (ns[id]||ns.d075);
+    // }
+
+    // controls
+    btnPrev.addEventListener('click', ()=>{prev();});
+    btnNext.addEventListener('click', ()=>{next();});
+    
+    function next(){ idx = (idx+1) % slides.length; render(); }
+    function prev(){ idx = (idx-1 + slides.length) % slides.length; render(); }
+    function goTo(i){ idx = i; render(); }
+
+    function startAutoplay(){ playing = true; autoTick(); }
+    function stopAutoplay(){ playing = false; if(autoplayTimer) {clearTimeout(autoplayTimer); autoplayTimer=null;} }
+    function togglePlay(){ if(playing) stopAutoplay(); else startAutoplay(); }
+    function autoTick(){ if(!playing) return; autoplayTimer = setTimeout(()=>{ next(); autoTick(); }, SLIDE_MS); }
+
+    // keyboard support
+    document.addEventListener('keydown', (e)=>{
+      if(e.key==='ArrowRight') next();
+      if(e.key==='ArrowLeft') prev();
+      if(e.key===' ') { e.preventDefault(); togglePlay(); }
+    });
+
+    // init
+    render(); 
+    
+    // =========== INÍCIO DO SLIDESHOW DE BACKGROUND ===========
+    document.addEventListener('DOMContentLoaded', function() {
+      const bgImages = [
+        'imagem1.png',  // URL-encoded para espaços e vírgulas
+        'imagem2.jpg',  // Ajuste se necessário
+        'imagem3.png',  // Encoded para caracteres especiais
+      ];
+      let bgIndex = 0;
+
+      function updateBackground() {
+        // Adiciona uma sobreposição escura para garantir a legibilidade do texto
+        document.body.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('${bgImages[bgIndex]}')`;
+        bgIndex = (bgIndex + 1) % bgImages.length;
+      }
+      
+      updateBackground(); // Define a imagem inicial assim que a página carrega
+      setInterval(updateBackground, 10000); // Muda a imagem a cada 10 segundos
+    });
+    // =========== FIM DO SLIDESHOW DE BACKGROUND ===========
+
+  </script>
+</body>
+</html>
