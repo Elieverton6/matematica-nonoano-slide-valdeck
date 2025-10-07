@@ -245,10 +245,19 @@
       ];
       let bgIndex = 0;
 
+      // Pré-carrega as imagens antes de aplicar
+      const preloaded = [];
+      bgImages.forEach(src => {
+        const img = new Image();
+        img.src = src;
+        preloaded.push(img);
+      });
+
       function updateBackground() {
         // Adiciona uma sobreposição escura para garantir a legibilidade do texto
         document.body.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('${bgImages[bgIndex]}')`;
         bgIndex = (bgIndex + 1) % bgImages.length;
+        document.body.style.backgroundColor = 'transparent'; // remove o cinza após o carregamento
       }
       
       updateBackground(); // Define a imagem inicial assim que a página carrega

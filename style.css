@@ -18,22 +18,22 @@
   --radius:18px;
 }
 *{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:'Poppins', 'Inter', sans-serif;
-  /* O fundo agora será controlado por JavaScript */
-  background-color: var(--bg-2); /* Cor de fallback caso a imagem não carregue */
+body {
+  margin: 0;
+  font-family: 'Poppins', 'Inter', sans-serif;
+  background-color: #000; /* Preto de fundo enquanto nada foi carregado */
+  background-image: none;
   background-size: cover;
-  background-position: center;
+  background-position: right center; /* Mostra mais o lado direito (rosto) */
   background-repeat: no-repeat;
   background-attachment: fixed;
-  transition: background-image 1.5s ease-in-out; /* Efeito de transição suave */
-  color:var(--text-main);
-  display:flex;
-  flex-direction:column;
-  min-height:100vh;
-  align-items:center;
-  padding:40px 16px;
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  padding: 40px 16px;
+  transition: background-image 1.5s ease-in-out, background-color 0.8s ease-in-out;
 }
 
 /* Container */
